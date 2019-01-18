@@ -7,6 +7,7 @@ package com.kevin.dao;
 import com.kevin.common.BaseDAO;
 import com.kevin.entity.RoleFunction;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,17 +24,20 @@ import static java.time.LocalDateTime.now;
  * @version 1.0
  * @date 2019/1/18 11:06
  */
+@Repository
 public class RoleFunctionDAO extends BaseDAO {
+
+
 
     private class RoleFunctionMapper implements RowMapper<RoleFunction> {
         @Override
         public RoleFunction mapRow(ResultSet resultSet, int i) throws SQLException {
             RoleFunction roleFunction = new RoleFunction();
             roleFunction.setId(resultSet.getLong("id"));
-            roleFunction.setRoleId(resultSet.getLong("roleId"));
-            roleFunction.setFunctionId(resultSet.getLong("functionId"));
-            roleFunction.setGmtCreate(resultSet.getDate("gmtCreate"));
-            roleFunction.setGmtModified(resultSet.getDate("gmtModified"));
+            roleFunction.setRoleId(resultSet.getLong("role_id"));
+            roleFunction.setFunctionId(resultSet.getLong("function_id"));
+            roleFunction.setGmtCreate(resultSet.getDate("gmt_create"));
+            roleFunction.setGmtModified(resultSet.getDate("gmt_modified"));
             return roleFunction;
         }
     }
@@ -70,9 +74,9 @@ public class RoleFunctionDAO extends BaseDAO {
         jdbcTemplate.batchUpdate(sql, batchArgs);
     }
 
-    public void deleteRoleFunction(Long id) {
-        String sql = "delete from auth_role_function where id = ?";
-        jdbcTemplate.update(sql, id);
+    public void deleteRoleFunction(Long roleId) {
+        String sql = "delete from auth_role_function where role_id = ?";
+        jdbcTemplate.update(sql, roleId);
     }
 
     public void updateRoleFunction(RoleFunction roleFunction) {
@@ -93,6 +97,11 @@ public class RoleFunctionDAO extends BaseDAO {
         sql.deleteCharAt(sql.length() - 2);
         sql.append(")");
         return jdbcTemplate.query(sql.toString(), ids.toArray(new Object[0]), new RoleFunctionMapper());
+    }
+
+    public Collection<RoleFunction> listRoleFunctions(Long roleId) {
+        String sql = "select * from auth_user_role where user_id = ?";
+        return jdbcTemplate.query(sql, new Object[]{roleId}, new RoleFunctionMapper());
     }
 
 

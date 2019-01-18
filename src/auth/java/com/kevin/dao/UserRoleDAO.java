@@ -7,10 +7,12 @@ package com.kevin.dao;
 import com.kevin.common.BaseDAO;
 import com.kevin.entity.UserRole;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 
 import static java.time.LocalDateTime.now;
 
@@ -21,7 +23,9 @@ import static java.time.LocalDateTime.now;
  * @version 1.0
  * @date 2019/1/18 11:06
  */
+@Repository
 public class UserRoleDAO extends BaseDAO {
+
 
 
 
@@ -43,6 +47,11 @@ public class UserRoleDAO extends BaseDAO {
     public void saveUserRole(UserRole userRole) {
         String sql = "insert into auth_user_role(id, user_id, role_id, gmt_create) values(?,?,?,?)";
         jdbcTemplate.update(sql, userRole.getId(), userRole.getUserId(), userRole.getRoleId(), now());
+    }
+
+    public void saveUserRole(List<UserRole> userRoles) {
+        String sql = "insert into auth_user_role(id, user_id, role_id, gmt_create) values(?,?,?,?)";
+        //jdbcTemplate.update(sql, userRole.getId(), userRole.getUserId(), userRole.getRoleId(), now());
     }
 
     public void deleteUserRole(Long id) {
@@ -72,6 +81,12 @@ public class UserRoleDAO extends BaseDAO {
 
 
     public Collection<UserRole> listUserRoles(int page, int size) {
-        return null;
+        String sql = "select * from auth_user_role limit ?,?";
+        return jdbcTemplate.query(sql, new Object[]{(page - 1) * size, (page * size - 1)}, new UserRoleMapper());
+    }
+
+    public Collection<UserRole> listUserRoles(Long userId) {
+        String sql = "select * from auth_user_role where user_id = ?";
+        return jdbcTemplate.query(sql, new Object[]{userId}, new UserRoleMapper());
     }
 }

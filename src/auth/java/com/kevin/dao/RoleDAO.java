@@ -7,6 +7,7 @@ package com.kevin.dao;
 import com.kevin.common.BaseDAO;
 import com.kevin.entity.Role;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,7 +22,10 @@ import static java.time.LocalDateTime.now;
  * @version 1.0
  * @date 2019/1/18 11:06
  */
+@Repository
 public class RoleDAO extends BaseDAO {
+
+
 
     private class RoleMapper implements RowMapper<Role> {
 
@@ -30,8 +34,8 @@ public class RoleDAO extends BaseDAO {
             Role role = new Role();
             role.setId(resultSet.getLong("id"));
             role.setName(resultSet.getString("name"));
-            role.setGmtCreate(resultSet.getDate("gmtCreate"));
-            role.setGmtModified(resultSet.getDate("gmtModified"));
+            role.setGmtCreate(resultSet.getDate("gmt_create"));
+            role.setGmtModified(resultSet.getDate("gmt_modified"));
             return role;
         }
     }
@@ -77,6 +81,10 @@ public class RoleDAO extends BaseDAO {
         return jdbcTemplate.query(sql.toString(),ids.toArray(new Object[0]), new RoleMapper());
     }
 
+    public Collection<Role> listRoles(int page, int size) {
+        String sql = "select * from auth_role limit ?,?";
+        return jdbcTemplate.query(sql, new Object[]{(page - 1) * size, (page * size - 1)}, new RoleMapper());
+    }
 
 
 

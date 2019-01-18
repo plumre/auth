@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * TODO
@@ -52,6 +53,7 @@ public class RoleService {
      */
     public void deleteRole(Long id) {
         roleDAO.deleteRole(id);
+        roleFunctionDAO.deleteRoleFunction(id);
     }
 
     /**
@@ -74,5 +76,49 @@ public class RoleService {
      */
     public Role getRole(Long id) {
         return roleDAO.getRole(id);
+    }
+
+    /**
+     * list roles and relative functionIds as per page and size
+     *
+     * @param page page num
+     * @param size page size
+     * @return collection of roles
+     */
+    public Collection<Role> listRoles(int page, int size) {
+        Collection<Role> roles = roleDAO.listRoles(page, size);
+        roles.forEach(
+                role -> {
+                    Collection<RoleFunction> roleFunctions = roleFunctionDAO.listRoleFunctions(role.getId());
+                    StringBuffer functionIds = new StringBuffer();
+                    roleFunctions.forEach(
+                            roleFunction -> {
+                                functionIds.append(roleFunction.getFunctionId()).append(",");
+                            });
+                    if (functionIds.length() > 1) {
+                        role.setFunctionIds(functionIds.deleteCharAt(functionIds.length() - 1).toString());
+                    }
+                });
+        return roles;
+    }
+
+    /**
+     * list role info as per ids
+     *
+     * @param ids the collection of roles' id
+     * @return collection of roles
+     */
+    public Collection<Role> listRoles(Collection<Long> ids) {
+        return roleDAO.listRoles(ids);
+    }
+
+    /**
+     * list role-functions relations as per roleId
+     *
+     * @param roleId the id of role
+     * @return collection of role-functions relations
+     */
+    public Collection<RoleFunction> listRoleFunctions(Long roleId) {
+        return roleFunctionDAO.listRoleFunctions(roleId);
     }
 }

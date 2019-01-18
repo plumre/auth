@@ -7,6 +7,7 @@ package com.kevin.dao;
 import com.kevin.common.BaseDAO;
 import com.kevin.entity.User;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,6 +22,7 @@ import static java.time.LocalDateTime.now;
  * @version 1.0
  * @date 2019/1/18 11:06
  */
+@Repository
 public class UserDAO extends BaseDAO {
 
 

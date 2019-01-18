@@ -11,7 +11,10 @@ import com.kevin.entity.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * TODO
@@ -66,10 +69,10 @@ public class UserService {
     }
 
     /**
-     * get user info
+     * get user info, use for Login Auth
      *
      * @param name the name of user
-     * @param pwd  the id of user
+     * @param pwd  the password of user
      * @return user info
      */
     public User getUser(String name, String pwd) {
@@ -106,6 +109,32 @@ public class UserService {
      */
     public Collection<UserRole> listUserRoles(int page, int size) {
         return userRoleDAO.listUserRoles(page, size);
+    }
+
+    /**
+     * list the user-roles relations
+     * @param userId the id of user
+     * @return collection of user-roles relations
+     */
+    public Collection<UserRole> listUserRoles(Long userId) {
+        return userRoleDAO.listUserRoles(userId);
+    }
+
+    /**
+     * save user-roles relations
+     * @param userId the id of user
+     * @param roleIds the ids of some roles
+     */
+    public void saveUserRole(Long userId, Long[] roleIds) {
+        List<UserRole> userRoles = new ArrayList<>();
+        Arrays.asList(roleIds).forEach(
+                roleId -> {
+                    UserRole userRole = new UserRole();
+                    userRole.setUserId(userId);
+                    userRole.setRoleId(roleId);
+                    userRoles.add(userRole);
+                });
+        userRoleDAO.saveUserRole(userRoles);
     }
 
 

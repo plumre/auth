@@ -7,6 +7,7 @@ package com.kevin.dao;
 import com.kevin.common.BaseDAO;
 import com.kevin.entity.Function;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,9 +23,8 @@ import static java.time.LocalDateTime.now;
  * @version 1.0
  * @date 2019/1/18 11:06
  */
+@Repository
 public class FunctionDAO extends BaseDAO {
-
-
 
     private class FunctionMapper implements RowMapper<Function> {
         @Override
@@ -32,12 +32,12 @@ public class FunctionDAO extends BaseDAO {
             Function function = new Function();
             function.setId(resultSet.getLong("id"));
             function.setName(resultSet.getString("name"));
-            function.setParentId(resultSet.getLong("parentId"));
+            function.setParentId(resultSet.getLong("parent_id"));
             function.setUrl(resultSet.getString("url"));
-            function.setSerialNum(resultSet.getInt("serialNum"));
+            function.setSerialNum(resultSet.getInt("serial_num"));
             function.setAccordion(resultSet.getInt("accordion"));
-            function.setGmtCreate(resultSet.getDate("gmtCreate"));
-            function.setGmtModified(resultSet.getDate("gmtModified"));
+            function.setGmtCreate(resultSet.getDate("gmt_create"));
+            function.setGmtModified(resultSet.getDate("gmt_modified"));
             return function;
         }
     }
