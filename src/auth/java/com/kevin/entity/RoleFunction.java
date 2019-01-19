@@ -7,7 +7,7 @@ package com.kevin.entity;
 import com.kevin.common.BaseEntity;
 
 /**
- * TODO
+ * role-functions relations entity
  *
  * @author renhongjiang
  * @version 1.0

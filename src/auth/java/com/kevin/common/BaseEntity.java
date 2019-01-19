@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * TODO
+ * the basic entity
  *
  * @author renhongjiang
  * @version 1.0
@@ -27,11 +27,9 @@ public abstract class BaseEntity {
         if (list == null || list.size() == 0) {
             return map;
         }
-
         for (T entity : list) {
             map.put(entity.getId(), entity);
         }
-
         return map;
     }
 

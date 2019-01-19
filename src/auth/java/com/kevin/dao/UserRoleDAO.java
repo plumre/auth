@@ -17,7 +17,7 @@ import java.util.List;
 import static java.time.LocalDateTime.now;
 
 /**
- * TODO the DAO(Data Access Object) of UserRole
+ * the DAO(Data Access Object) of UserRole
  *
  * @author renhongjiang
  * @version 1.0
@@ -26,11 +26,7 @@ import static java.time.LocalDateTime.now;
 @Repository
 public class UserRoleDAO extends BaseDAO {
 
-
-
-
     private class UserRoleMapper implements RowMapper<UserRole> {
-
         @Override
         public UserRole mapRow(ResultSet resultSet, int i) throws SQLException {
             UserRole userRole = new UserRole();
@@ -42,7 +38,6 @@ public class UserRoleDAO extends BaseDAO {
             return userRole;
         }
     }
-
 
     public void saveUserRole(UserRole userRole) {
         String sql = "insert into auth_user_role(id, user_id, role_id, gmt_create) values(?,?,?,?)";
@@ -78,7 +73,6 @@ public class UserRoleDAO extends BaseDAO {
         sql.append(")");
         return jdbcTemplate.query(sql.toString(), ids.toArray(new Object[0]), new UserRoleMapper());
     }
-
 
     public Collection<UserRole> listUserRoles(int page, int size) {
         String sql = "select * from auth_user_role limit ?,?";

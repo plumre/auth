@@ -16,7 +16,7 @@ import java.util.Collection;
 import static java.time.LocalDateTime.now;
 
 /**
- * TODO the DAO(Data Access Object) of User
+ * the DAO(Data Access Object) of User
  *
  * @author renhongjiang
  * @version 1.0
@@ -25,10 +25,7 @@ import static java.time.LocalDateTime.now;
 @Repository
 public class UserDAO extends BaseDAO {
 
-
-
     private class UserMapper implements RowMapper<User> {
-
         @Override
         public User mapRow(ResultSet resultSet, int i) throws SQLException {
             User user = new User();

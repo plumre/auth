@@ -17,7 +17,7 @@ import java.util.List;
 import static java.time.LocalDateTime.now;
 
 /**
- * TODO the DAO(Data Access Object) of Function
+ * the DAO(Data Access Object) of Function
  *
  * @author renhongjiang
  * @version 1.0
@@ -89,7 +89,7 @@ public class FunctionDAO extends BaseDAO {
         return jdbcTemplate.query(sql.toString(), ids.toArray(new Object[0]), new FunctionMapper());
     }
 
-    public List<Function> listFunctions(int page, int size, Long parentId) {
+    public List<Function> listFunctions(Integer page, Integer size, Long parentId) {
         return null;
     }
 

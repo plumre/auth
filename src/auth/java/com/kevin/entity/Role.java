@@ -9,7 +9,7 @@ import com.kevin.common.BaseEntity;
 import java.util.List;
 
 /**
- * TODO
+ * role entity
  *
  * @author renhongjiang
  * @version 1.0

@@ -5,7 +5,7 @@ package com.kevin.common;
  */
 
 /**
- * TODO
+ * the enumeration of yes and no
  *
  * @author renhongjiang
  * @version 1.0

@@ -15,7 +15,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * TODO
+ * role service
  *
  * @author renhongjiang
  * @version 1.0

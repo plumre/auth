@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * TODO the controller of role
+ * the controller of role
  *
  * @author renhongjiang
  * @version 1.0

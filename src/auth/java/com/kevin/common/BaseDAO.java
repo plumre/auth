@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
- * TODO
+ * the basic DAO (Data Access Object)
  *
  * @author renhongjiang
  * @version 1.0

@@ -18,7 +18,7 @@ import java.util.List;
 import static java.time.LocalDateTime.now;
 
 /**
- * TODO the DAO(Data Access Object) of RoleFunction
+ * the DAO(Data Access Object) of RoleFunction
  *
  * @author renhongjiang
  * @version 1.0
@@ -26,8 +26,6 @@ import static java.time.LocalDateTime.now;
  */
 @Repository
 public class RoleFunctionDAO extends BaseDAO {
-
-
 
     private class RoleFunctionMapper implements RowMapper<RoleFunction> {
         @Override

@@ -18,9 +18,9 @@ public class AjaxResult implements Serializable {
 
     private static final long serialVersionUID = -1282705380502963911L;
 
-    public static final Integer AJAX_STATUS_SUCCESS = 0;
-    public static final Integer AJAX_STATUS_WARN = 1;
-    public static final Integer AJAX_STATUS_ERROR = 2;
+    private static final Integer AJAX_STATUS_SUCCESS = 0;
+    private static final Integer AJAX_STATUS_WARN = 1;
+    private static final Integer AJAX_STATUS_ERROR = 2;
 
     private Integer statusCode;
     private String message;

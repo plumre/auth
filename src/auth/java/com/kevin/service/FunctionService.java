@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * TODO
+ * function service
  *
  * @author renhongjiang
  * @version 1.0
@@ -60,7 +60,7 @@ public class FunctionService {
      * @param parentId the id of parent node
      * @return collection of children functions
      */
-    public List<Function> listFunctions(int page, int size, Long parentId) {
+    public List<Function> listFunctions(Integer page, Integer size, Long parentId) {
         return functionDAO.listFunctions(page, size, parentId);
     }
 

@@ -16,7 +16,7 @@ import java.util.Collection;
 import static java.time.LocalDateTime.now;
 
 /**
- * TODO the DAO(Data Access Object) of Role
+ * the DAO(Data Access Object) of Role
  *
  * @author renhongjiang
  * @version 1.0
@@ -25,10 +25,7 @@ import static java.time.LocalDateTime.now;
 @Repository
 public class RoleDAO extends BaseDAO {
 
-
-
     private class RoleMapper implements RowMapper<Role> {
-
         @Override
         public Role mapRow(ResultSet resultSet, int i) throws SQLException {
             Role role = new Role();

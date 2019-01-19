@@ -7,7 +7,7 @@ package com.kevin.entity;
 import com.kevin.common.BaseEntity;
 
 /**
- * TODO
+ * user entity
  *
  * @author renhongjiang
  * @version 1.0
@@ -17,6 +17,7 @@ public class User extends BaseEntity {
 
     private String name;
     private String pwd;
+    private String roleIds;
 
 
     public String getName() {
@@ -33,5 +34,13 @@ public class User extends BaseEntity {
 
     public void setPwd(String pwd) {
         this.pwd = pwd;
+    }
+
+    public String getRoleIds() {
+        return roleIds;
+    }
+
+    public void setRoleIds(String roleIds) {
+        this.roleIds = roleIds;
     }
 }
